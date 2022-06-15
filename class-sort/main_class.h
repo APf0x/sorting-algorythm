@@ -11,13 +11,23 @@ private:
 	    tower[a].setSize(sf::Vector2f(tower[b].getSize()));
 	    tower[b].setSize(temp);
     }
-    int partition(std::array<sf::RectangleShape, NUMBER>& tower, int low, int high){
+    int partition(std::array<sf::RectangleShape, NUMBER>& tower, sf::RenderWindow& window, int low, int high){
         float pivot = tower[high].getGlobalBounds().height;
         int i = (low - 1);
+        window.clear();
+            for(int x = 0;x<NUMBER; x++){
+                window.draw(tower[x]);
+            }
+            window.display();
         for(int j=low; j<high; j++){
-            if(tower[j].getGlobalBounds().height <= pivot){
+            if(tower[j].getGlobalBounds().height < pivot){
                 i++;
                 swap(tower, i, j);
+                window.clear();
+                for(int x = 0;x<NUMBER; x++){
+                    window.draw(tower[x]);
+                }
+                window.display();
             }
         }
         swap(tower, i+1, high);
@@ -49,7 +59,7 @@ void main_class::buble_sort(std::array<sf::RectangleShape, NUMBER>& tower, sf::R
 }
 
 void main_class::quicksort(std::array<sf::RectangleShape, NUMBER>& tower, sf::RenderWindow& window, int low, int high){
-    int pi = partition(tower, 0, high);
+    int pi = partition(tower, window, low, high);
     main_class::quicksort(tower, window, low, pi-1);
     main_class::quicksort(tower, window, pi+1, high);
 }
