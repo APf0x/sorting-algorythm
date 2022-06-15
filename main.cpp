@@ -46,32 +46,25 @@ int main(){
                     recompile();
                     return 0;
                 }
+                if(event.key.code == sf::Keyboard::B){
+                    buble.buble_sort(tower, window);
+                    return 0;
+                } 
+                if(event.key.code == sf::Keyboard::Q){
+                    buble.quicksort(tower, window, 0, NUMBER - 1);
+                    return 0;
+                } 
             }
         }
         window.clear();
         
-        choice = 2;
-        switch(choice){
-        case 1:
-            buble.buble_sort(tower, window);
-            break;
-        case 2:
-            buble.quicksort(tower, window, 0, NUMBER + 1);
-            break;
-        default:
-            break;
-        }
-        
-        
-        
-        
         //old comments that i didnt delete because im too lazy
         //btw these are pointer like i dont remember the definition have fun with them when you will have to deal with this shit again in the future.
         //nice nice nice fuck you and this stupid fucking code its 00;04 am and im done whit this shit go fuck yourself for not studying this shit earlyer do it tommorow with phisics so you have time afterwards + fuck you again why not p===D
-        // for(int x = 0;x<NUMBER; x++){
-        //     window.draw(tower[x]);
-        // }
-        cout << "finished running" <<endl;
+        for(int x = 0;x<NUMBER; x++){
+            window.draw(tower[x]);
+        }
+        //cout << "finished running" <<endl;
     }
     return 0;
 }
